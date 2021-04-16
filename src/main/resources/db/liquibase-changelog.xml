@@ -1,0 +1,10 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="changelog/1_add_functions.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162000_create_sciencejournal_schema.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162005_create_users_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

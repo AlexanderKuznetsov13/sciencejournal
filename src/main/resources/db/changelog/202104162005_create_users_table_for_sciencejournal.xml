@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_sequence_users_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('users_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.users_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_users_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('users_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.users (
+            id              INTEGER NOT NULL DEFAULT nextval('sciencejournal.users_seq'),
+            name             VARCHAR(100)    NOT NULL,
+            surname          VARCHAR(300)    NOT NULL,
+            middle_name      VARCHAR(300)    NULL,
+            email            VARCHAR(50)    NOT NULL,
+            password         VARCHAR(50)    NOT NULL,
+
+            CONSTRAINT users_id_pk PRIMARY KEY (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.users IS 'List of users';
+            COMMENT ON COLUMN sciencejournal.users.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.users.name IS 'Name of user';
+            COMMENT ON COLUMN sciencejournal.users.surname IS 'Surname of user';
+            COMMENT ON COLUMN sciencejournal.users.middle_name IS 'Middle name of user';
+            COMMENT ON COLUMN sciencejournal.users.email IS 'Email of user';
+            COMMENT ON COLUMN sciencejournal.users.password IS 'Password of user';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
