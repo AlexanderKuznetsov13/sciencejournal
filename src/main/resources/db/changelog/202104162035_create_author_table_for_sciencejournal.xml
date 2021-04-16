@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_author_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('author_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.author_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_author_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="author" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('author_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.author (
+            id                  INTEGER NOT NULL DEFAULT nextval('sciencejournal.author_seq'),
+            last_name           VARCHAR(100)    NOT NULL,
+            first_name          VARCHAR(100)    NOT NULL,
+            middle_name         VARCHAR(100)     NULL,
+            date_of_birth       TIMESTAMP    NOT NULL,
+            orcid               VARCHAR(100)    NOT NULL,
+
+            CONSTRAINT author_id_pk PRIMARY KEY (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.author IS 'List of author';
+            COMMENT ON COLUMN sciencejournal.author.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.author.last_name IS 'last name of author';
+            COMMENT ON COLUMN sciencejournal.author.first_name IS 'first name of author';
+            COMMENT ON COLUMN sciencejournal.author.middle_name IS 'middle name of author';
+            COMMENT ON COLUMN sciencejournal.author.date_of_birth IS 'date of birth author';
+            COMMENT ON COLUMN sciencejournal.author.orcid IS 'orcid of author';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

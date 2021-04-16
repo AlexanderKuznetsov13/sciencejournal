@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_topics_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('topics_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.topics_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_topics_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="topics" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('topics_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.topics (
+            id              INTEGER NOT NULL DEFAULT nextval('sciencejournal.topics_seq'),
+            name             VARCHAR(100)    NOT NULL,
+
+            CONSTRAINT topics_id_pk PRIMARY KEY (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.topics IS 'List of topics';
+            COMMENT ON COLUMN sciencejournal.topics.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.topics.name IS 'Name of topic';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

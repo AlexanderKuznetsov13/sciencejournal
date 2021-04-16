@@ -7,4 +7,11 @@
     <include file="changelog/1_add_functions.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104162000_create_sciencejournal_schema.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104162005_create_users_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162010_create_topics_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162015_create_languages_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162020_create_usertypes_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162025_create_applicationstatustypes_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162030_create_affiliation_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162035_create_author_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162040_create_configs_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
