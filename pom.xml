@@ -13,9 +13,13 @@
 	<version>0.9.1-SNAPSHOT</version>
 	<name>science-journal-service</name>
 	<description>Journal Application</description>
+
 	<properties>
 		<java.version>11</java.version>
+		<postgresql.version>42.2.19</postgresql.version>
+		<springframework.version>5.0.4.RELEASE</springframework.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,9 +32,21 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
