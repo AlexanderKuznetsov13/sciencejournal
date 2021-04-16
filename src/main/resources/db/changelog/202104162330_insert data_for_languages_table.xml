@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104162330_insert data_for_languages_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="languages"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.languages
+                where name in ('Russian', 'English', 'German')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.languages (id, name)
+            VALUES (nextval('sciencejournal.languages_seq'), 'Russian');
+
+            INSERT INTO sciencejournal.languages (id, name)
+            VALUES (nextval('sciencejournal.languages_seq'), 'English');
+
+            INSERT INTO sciencejournal.languages (id, name)
+            VALUES (nextval('sciencejournal.languages_seq'), 'German');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
