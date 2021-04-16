@@ -5,9 +5,9 @@ import ru.agk13145.sciencejournal.model.User;
 public interface UserDao {
 
     /**
-     * Получение валюты по идентификатору
+     * Получение пользователя по идентификатору
      *
-     * @return валюту
+     * @return пользователя
      */
     User getUser(Integer userId);
 
