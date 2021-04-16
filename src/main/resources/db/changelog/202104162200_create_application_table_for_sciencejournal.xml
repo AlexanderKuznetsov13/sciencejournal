@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_application_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('application_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.application_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_application_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="application" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('application_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.application (
+            id              INTEGER         NOT NULL DEFAULT nextval('sciencejournal.application_seq'),
+            title            VARCHAR(500)     NOT NULL,
+            user_id         INTEGER         NOT NULL,
+            journal_id      INTEGER         NOT NULL,
+            application_status_id      INTEGER         NOT NULL,
+            creation_date TIMESTAMP NOT NULL,
+            last_modification TIMESTAMP NOT NULL,
+
+
+            CONSTRAINT application_id_pk PRIMARY KEY (id),
+            CONSTRAINT application_user_id_fk FOREIGN KEY (user_id) REFERENCES sciencejournal.users (id),
+            CONSTRAINT application_journal_id_fk FOREIGN KEY (journal_id) REFERENCES sciencejournal.journals (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.application IS 'List of application';
+            COMMENT ON COLUMN sciencejournal.application.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.application.title IS 'title of application';
+            COMMENT ON COLUMN sciencejournal.application.user_id IS 'id of user';
+            COMMENT ON COLUMN sciencejournal.application.journal_id IS 'id of journal';
+            COMMENT ON COLUMN sciencejournal.application.creation_date IS 'time when record is created';
+            COMMENT ON COLUMN sciencejournal.application.last_modification IS 'time when record is modified';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

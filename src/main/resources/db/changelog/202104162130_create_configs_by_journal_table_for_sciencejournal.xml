@@ -1,0 +1,48 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_configsbyjournal_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('configsbyjournal_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.configsbyjournal_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_configsbyjournal_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="configsbyjournal" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('configsbyjournal_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.configsbyjournal (
+            id INTEGER NOT NULL DEFAULT nextval('sciencejournal.configsbyjournal_seq'),
+            config_id INTEGER NOT NULL,
+            journal_id INTEGER NOT NULL,
+            value VARCHAR(300) NOT NULL,
+
+            CONSTRAINT configsbyjournal_id_pk PRIMARY KEY (id),
+            CONSTRAINT configsbyjournal_config_id_fk FOREIGN KEY (config_id) REFERENCES sciencejournal.configs (id),
+            CONSTRAINT configsbyjournal_journal_id_fk FOREIGN KEY (journal_id) REFERENCES sciencejournal.journals (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.configsbyjournal IS 'List of configs for specific journal';
+            COMMENT ON COLUMN sciencejournal.configsbyjournal.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.configsbyjournal.config_id IS 'id of config';
+            COMMENT ON COLUMN sciencejournal.configsbyjournal.journal_id IS 'id of journal';
+            COMMENT ON COLUMN sciencejournal.configsbyjournal.value IS 'value of config';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

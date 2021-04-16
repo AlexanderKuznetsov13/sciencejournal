@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_authorbyapplication_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('authorbyapplication_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.authorbyapplication_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_authorbyapplication_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authorbyapplication" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('authorbyapplication_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.authorbyapplication (
+            id              INTEGER         NOT NULL DEFAULT nextval('sciencejournal.authorbyapplication_seq'),
+            application_id         INTEGER         NOT NULL,
+            authors_by_affiliation_id      INTEGER         NOT NULL,
+
+            CONSTRAINT authorbyapplication_id_pk PRIMARY KEY (id),
+            CONSTRAINT authorbyapplication_application_id_fk FOREIGN KEY (application_id) REFERENCES sciencejournal.application (id),
+            CONSTRAINT authorbyapplication_authors_by_affiliation_id_fk FOREIGN KEY (authors_by_affiliation_id) REFERENCES sciencejournal.authorsbyaffiliation (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.authorbyapplication IS 'List of authorbyapplication';
+            COMMENT ON COLUMN sciencejournal.authorbyapplication.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.authorbyapplication.application_id IS 'id of application';
+            COMMENT ON COLUMN sciencejournal.authorbyapplication.authors_by_affiliation_id IS 'id of authors of affiliation';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
