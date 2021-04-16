@@ -13,7 +13,7 @@ import java.util.Map;
 @Repository
 public class TopicDaoImpl implements TopicDao {
 
-    private final static String SQL_SELECT_TOPIC = "SELECT ID, NAME FROM topics " +
+    private final static String SQL_SELECT_TOPIC = "SELECT ID, NAME FROM sciencejournal.topics " +
             "WHERE id = :id";
 
     @Autowired

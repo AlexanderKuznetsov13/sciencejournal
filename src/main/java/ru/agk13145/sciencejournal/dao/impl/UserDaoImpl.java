@@ -14,7 +14,7 @@ import java.util.Map;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    private final static String SQL_SELECT_USER = "SELECT ID, NAME, SURNAME, MIDDLE_NAME, EMAIL, PASSWORD FROM users " +
+    private final static String SQL_SELECT_USER = "SELECT ID, NAME, SURNAME, MIDDLE_NAME, EMAIL, PASSWORD FROM sciencejournal.users " +
             "WHERE id = :id";
 
     @Autowired
