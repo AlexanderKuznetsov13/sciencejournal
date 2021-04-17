@@ -24,6 +24,15 @@ public class ApplicationServiceImpl implements ApplicationService {
     AuthorDao authorDao;
 
     @Autowired
+    UserDao userDao;
+
+    @Autowired
+    JournalDao journalDao;
+
+    @Autowired
+    ApplicationStatusTypeDao applicationStatusTypeDao;
+
+    @Autowired
     AffiliationDao affiliationDao;
 
     @Override
@@ -39,11 +48,21 @@ public class ApplicationServiceImpl implements ApplicationService {
         applicationWithDetails.setListAuthors(new ArrayList<>());
         applicationWithDetails.setId(application.getId());
         applicationWithDetails.setTitle(application.getTitle());
+
         applicationWithDetails.setJournalId(application.getJournalId());
+        Journal journal= journalDao.getJournal(application.getJournalId());
+        applicationWithDetails.setJournal(journal);
+
         applicationWithDetails.setUserId(application.getUserId());
+        User user = userDao.getUser(application.getUserId());
+        applicationWithDetails.setUser(user);
+
         applicationWithDetails.setCreationDate(application.getCreationDate());
         applicationWithDetails.setLastModification(application.getLastModification());
+
         applicationWithDetails.setApplicationStatusId(application.getApplicationStatusId());
+        ApplicationStatusType applicationStatusType= applicationStatusTypeDao.getApplicationStatusType(application.getApplicationStatusId());
+        applicationWithDetails.setApplicationStatusType(applicationStatusType);
 
         List<AuthorWithDetails> listOfAuthors = new ArrayList<>();
         List<AuthorByApplication> listOfAuthorsByAffiliation = authorByApplicationDao.findByApplicationId(applicationId);
