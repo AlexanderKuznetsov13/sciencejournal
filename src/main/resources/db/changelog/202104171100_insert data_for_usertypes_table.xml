@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104171100_insert data_for_usertypes_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="usertypes"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.usertypes
+                where name in ('administrator', 'manager', 'reviewer', 'user')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.usertypes (id, name, description)
+            VALUES (nextval('sciencejournal.usertypes_seq'), 'administrator','full access to the database ');
+
+            INSERT INTO sciencejournal.usertypes (id, name, description)
+            VALUES (nextval('sciencejournal.usertypes_seq'), 'manager','restricted database access');
+
+            INSERT INTO sciencejournal.usertypes (id, name, description)
+            VALUES (nextval('sciencejournal.usertypes_seq'), 'reviewer','access to creating reviews and comments on the article');
+
+            INSERT INTO sciencejournal.usertypes (id, name, description)
+            VALUES (nextval('sciencejournal.usertypes_seq'), 'user', 'user');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
