@@ -1,12 +1,14 @@
 package ru.agk13145.sciencejournal.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.agk13145.sciencejournal.dao.ApplicationDao;
 import ru.agk13145.sciencejournal.model.Application;
 import ru.agk13145.sciencejournal.service.ApplicationService;
 
 import java.util.List;
 
+@Service
 public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     ApplicationDao applicationDao;

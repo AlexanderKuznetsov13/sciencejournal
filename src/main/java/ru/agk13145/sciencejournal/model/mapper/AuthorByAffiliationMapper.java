@@ -15,7 +15,7 @@ public class AuthorByAffiliationMapper implements RowMapper<AuthorByAffiliation>
         authorByAffiliation.setAuthorId(resultSet.getInt("AUTHOR_ID"));
         authorByAffiliation.setAffiliationId(resultSet.getInt("AFFILIATION_ID"));
         authorByAffiliation.setCreationDate(resultSet.getObject("CREATION_DATE", LocalDateTime.class));
-        authorByAffiliation.setLastModification(resultSet.getObject("LAST_MODIFICATION_DATE", LocalDateTime.class));
+        authorByAffiliation.setLastModification(resultSet.getObject("LAST_MODIFICATION", LocalDateTime.class));
         return authorByAffiliation;
     }
 }

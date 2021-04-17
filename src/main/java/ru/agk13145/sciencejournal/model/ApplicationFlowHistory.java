@@ -62,10 +62,12 @@ public class ApplicationFlowHistory {
         isDone = done;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }

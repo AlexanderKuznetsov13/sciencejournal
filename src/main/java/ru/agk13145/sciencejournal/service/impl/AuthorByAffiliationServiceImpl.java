@@ -1,12 +1,14 @@
 package ru.agk13145.sciencejournal.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.agk13145.sciencejournal.dao.AuthorByAffiliationDao;
 import ru.agk13145.sciencejournal.model.AuthorByAffiliation;
 import ru.agk13145.sciencejournal.service.AuthorByAffiliationService;
 
 import java.util.List;
 
+@Service
 public class AuthorByAffiliationServiceImpl implements AuthorByAffiliationService {
     @Autowired
     AuthorByAffiliationDao authorByAffiliationDao;

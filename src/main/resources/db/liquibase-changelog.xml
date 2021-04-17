@@ -31,4 +31,6 @@
     <include file="changelog/202104172000_insert data_for_users_by_journal_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104172045_insert data_for_author_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104172050_insert data_for_authors_by_affiliation_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172150_insert data_for_application_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172205_insert data_for_author_by_application_table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

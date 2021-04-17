@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104172150_insert data_for_application_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="application"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.application
+                where (user_id=4 and journal_id=3 and application_status_id=1) or (user_id=2 and journal_id=2 and application_status_id=6)
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.application (id, title, user_id, journal_id, application_status_id, creation_date, last_modification)
+            VALUES (nextval('sciencejournal.application_seq'), 'Big Boom', 3, 2, 1, now(), now());
+
+            INSERT INTO sciencejournal.application (id, title, user_id, journal_id, application_status_id, creation_date, last_modification)
+            VALUES (nextval('sciencejournal.application_seq'), 'Small Boom', 2, 1, 7, now(), now());
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

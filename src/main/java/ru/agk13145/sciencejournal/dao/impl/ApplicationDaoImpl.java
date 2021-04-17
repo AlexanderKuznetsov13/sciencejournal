@@ -58,6 +58,7 @@ public class ApplicationDaoImpl implements ApplicationDao {
     @Transactional
     public void updateApplication(Application application) {
         Map<String, Object> params = new HashMap<>();
+        params.put("id", application.getId());
         params.put("title", application.getTitle());
         params.put("user_id", application.getUserId());
         params.put("journal_id", application.getJournalId());

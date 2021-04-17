@@ -9,7 +9,7 @@
 
     <changeSet id="202104172000_insert data_for_usersbyjournal_table" author="alexander.kuznetsov"  dbms="postgresql">
         <preConditions onFail="MARK_RAN">
-            <tableExists schemaName="sciencejournal" tableName="userjournals"/>
+            <tableExists schemaName="sciencejournal" tableName="usersbyjournal"/>
             <sqlCheck expectedResult="0">
                 select count(1)
                 from sciencejournal.usersbyjournal

@@ -18,7 +18,7 @@ public class ApplicationFlowHistoryMapper implements RowMapper<ApplicationFlowHi
         applicationFlowHistory.setStatusTypeId(resultSet.getInt("STATUS_TYPE_ID"));
         applicationFlowHistory.setDone(resultSet.getBoolean("IS_DONE"));
         applicationFlowHistory.setCreationDate(resultSet.getObject("CREATION_DATE", LocalDateTime.class));
-        applicationFlowHistory.setLastModification(resultSet.getObject("LAST_MODIFICATION_DATE", LocalDateTime.class));
+        applicationFlowHistory.setLastModification(resultSet.getObject("LAST_MODIFICATION", LocalDateTime.class));
         return applicationFlowHistory;
     }
 }

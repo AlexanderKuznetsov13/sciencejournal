@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104172205_insert data_for_authorbyapplication_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="authorbyapplication"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.authorbyapplication
+                where (application_id=1 and authors_by_affiliation_id=1) or (application_id=1 and authors_by_affiliation_id=1)
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.authorbyapplication (id, application_id, authors_by_affiliation_id)
+            VALUES (nextval('sciencejournal.authorbyapplication_seq'), 1, 1);
+
+            INSERT INTO sciencejournal.authorbyapplication (id, application_id, authors_by_affiliation_id)
+            VALUES (nextval('sciencejournal.authorbyapplication_seq'), 1, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
