@@ -31,6 +31,7 @@
             name            VARCHAR(300)    NOT NULL,
             topic_id        INTEGER         NOT NULL,
             language_id     INTEGER         NOT NULL,
+            issn            VARCHAR(100)    NOT NULL,
 
             CONSTRAINT journals_id_pk PRIMARY KEY (id),
             CONSTRAINT journals_topic_id_fk FOREIGN KEY (topic_id) REFERENCES sciencejournal.topics (id),
@@ -42,6 +43,7 @@
             COMMENT ON COLUMN sciencejournal.journals.name IS 'name of journal';
             COMMENT ON COLUMN sciencejournal.journals.topic_id IS 'id of topics';
             COMMENT ON COLUMN sciencejournal.journals.language_id IS 'id of language';
+            COMMENT ON COLUMN sciencejournal.journals.issn IS 'ISSN of journal';
         </sql>
     </changeSet>
 

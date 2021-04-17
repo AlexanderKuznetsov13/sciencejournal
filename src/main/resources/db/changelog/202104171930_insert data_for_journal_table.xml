@@ -17,11 +17,11 @@
             </sqlCheck>
         </preConditions>
         <sql>
-            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
-            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of General Physics', 7, 1);
+            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id, issn)
+            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of General Physics', 7, 1, '111-222-333');
 
-            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
-            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of Business', 1, 1);
+            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id, issn)
+            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of Business', 1, 1, '222-333-444');
         </sql>
     </changeSet>
 
