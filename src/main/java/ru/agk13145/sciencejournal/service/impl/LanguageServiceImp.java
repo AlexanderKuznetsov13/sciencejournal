@@ -16,9 +16,7 @@ public class LanguageServiceImp implements LanguageService {
     LanguageDao languageDao;
 
     @Override
-    public Language getLanguage(Integer languageId) {
-        return languageDao.getLanguage(languageId);
-    }
+    public Language getLanguage(Integer languageId) { return languageDao.getLanguage(languageId); }
 
     @Override
     @Transactional
