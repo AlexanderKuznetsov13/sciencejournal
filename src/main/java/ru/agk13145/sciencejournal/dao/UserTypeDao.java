@@ -4,7 +4,7 @@ import ru.agk13145.sciencejournal.model.UserType;
 
 import java.util.List;
 
-public interface UsertypeDao {
+public interface UserTypeDao {
     UserType getUserType(Integer UsertypeId);
 
     Integer createUserType(UserType usertype);

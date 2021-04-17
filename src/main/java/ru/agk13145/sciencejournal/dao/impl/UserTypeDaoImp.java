@@ -6,16 +6,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.agk13145.sciencejournal.dao.UsertypeDao;
+import ru.agk13145.sciencejournal.dao.UserTypeDao;
 import ru.agk13145.sciencejournal.model.UserType;
-import ru.agk13145.sciencejournal.model.mapper.UsertypeMapper;
+import ru.agk13145.sciencejournal.model.mapper.UserTypeMapper;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
-public class UsertypeDaoImp implements UsertypeDao {
+public class UserTypeDaoImp implements UserTypeDao {
 
     private final static String SQL_SELECT_USERTYPE = "SELECT ID, NAME, DESCRIPTION FROM sciencejournal.Usertypes " +
             "WHERE id = :id";
@@ -38,7 +38,7 @@ public class UsertypeDaoImp implements UsertypeDao {
     public UserType getUserType(Integer usertypeId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", usertypeId);
-        return namedParameterJdbcTemplate.queryForObject(SQL_SELECT_USERTYPE, paramMap, new UsertypeMapper());
+        return namedParameterJdbcTemplate.queryForObject(SQL_SELECT_USERTYPE, paramMap, new UserTypeMapper());
     }
 
     @Override
@@ -72,6 +72,6 @@ public class UsertypeDaoImp implements UsertypeDao {
 
     @Override
     public List<UserType> getUserTypes() {
-        return namedParameterJdbcTemplate.query(SQL_SELECT_ALL_USERTYPE, new UsertypeMapper());
+        return namedParameterJdbcTemplate.query(SQL_SELECT_ALL_USERTYPE, new UserTypeMapper());
     }
 }

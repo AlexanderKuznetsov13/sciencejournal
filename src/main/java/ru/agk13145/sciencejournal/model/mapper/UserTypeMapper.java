@@ -6,14 +6,14 @@ import ru.agk13145.sciencejournal.model.UserType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsertypeMapper implements RowMapper<UserType> {
+public class UserTypeMapper implements RowMapper<UserType> {
 
     @Override
     public UserType mapRow(ResultSet resultSet, int i) throws SQLException {
         UserType usertype = new UserType();
         usertype.setId(resultSet.getInt("ID"));
         usertype.setName(resultSet.getString("NAME"));
-        usertype.setDescription(resultSet.getString("Description"));
+        usertype.setDescription(resultSet.getString("DESCRIPTION"));
         return usertype;
     }
 }
