@@ -21,7 +21,7 @@
             VALUES (nextval('sciencejournal.authorbyapplication_seq'), 1, 1);
 
             INSERT INTO sciencejournal.authorbyapplication (id, application_id, authors_by_affiliation_id)
-            VALUES (nextval('sciencejournal.authorbyapplication_seq'), 1, 1);
+            VALUES (nextval('sciencejournal.authorbyapplication_seq'), 1, 2);
         </sql>
     </changeSet>
 

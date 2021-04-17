@@ -17,7 +17,7 @@ import java.util.Map;
 @Repository
 public class AuthorDaoImp implements AuthorDao {
 
-    private final static String SQL_SELECT_AUTHOR = "SELECT ID, NAME, DESCRIPTION FROM sciencejournal.author " +
+    private final static String SQL_SELECT_AUTHOR = "SELECT ID, FIRST_NAME, LAST_NAME, MIDDLE_NAME, DATE_OF_BIRTH, ORCID FROM sciencejournal.author " +
             "WHERE id = :id";
 
     private final static String SQL_CREATE_AUTHOR = "INSERT INTO " +
@@ -30,7 +30,7 @@ public class AuthorDaoImp implements AuthorDao {
 
     private final static String SQL_DELETE_AUTHOR = "DELETE FROM sciencejournal.author WHERE id = :id";
 
-    private final static String SQL_SELECT_ALL_AUTHOR = "SELECT ID, NAME, DESCRIPTION  FROM sciencejournal.author ORDER BY id ASC";
+    private final static String SQL_SELECT_ALL_AUTHOR = "SELECT ID, FIRST_NAME, LAST_NAME, MIDDLE_NAME, DATE_OF_BIRTH, ORCID  FROM sciencejournal.author ORDER BY id ASC";
 
 
     @Autowired

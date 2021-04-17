@@ -17,18 +17,18 @@ import java.util.Map;
 @Repository
 public class AuthorByAffiliationDaoImp implements AuthorByAffiliationDao {
 
-    private final static String SQL_SELECT_CONFIG = "SELECT ID, AUTHOR_ID, AFFILIATION_ID, CREATION_DATE, LAST_MODIFICATION FROM sciencejournal.authorsByAffiliations " +
+    private final static String SQL_SELECT_CONFIG = "SELECT ID, AUTHOR_ID, AFFILIATION_ID, CREATION_DATE, LAST_MODIFICATION FROM sciencejournal.authorsbyaffiliation " +
             "WHERE id = :id";
 
     private final static String SQL_CREATE_CONFIG = "INSERT INTO " +
-            "sciencejournal.authorsByAffiliations(author_id, affiliation_id, creation_date, last_modification) VALUES (:author_id, :affiliation_id, now(), now() )";
+            "sciencejournal.authorsbyaffiliation(author_id, affiliation_id, creation_date, last_modification) VALUES (:author_id, :affiliation_id, now(), now() )";
 
-    private final static String SQL_UPDATE_CONFIG = "UPDATE sciencejournal.authorsByAffiliations " +
+    private final static String SQL_UPDATE_CONFIG = "UPDATE sciencejournal.authorsbyaffiliation " +
             "SET author_id = :author_id, affiliation_id=:affiliation_id, last_modification = now()  WHERE id = :id";
 
-    private final static String SQL_DELETE_CONFIG = "DELETE FROM sciencejournal.authorsByAffiliations WHERE id = :id";
+    private final static String SQL_DELETE_CONFIG = "DELETE FROM sciencejournal.authorsbyaffiliation WHERE id = :id";
 
-    private final static String SQL_SELECT_ALL_CONFIG = "SELECT ID, AUTHOR_ID, AFFILIATION_ID, CREATION_DATE, LAST_MODIFICATION  FROM sciencejournal.authorsByAffiliations ORDER BY id ASC";
+    private final static String SQL_SELECT_ALL_CONFIG = "SELECT ID, AUTHOR_ID, AFFILIATION_ID, CREATION_DATE, LAST_MODIFICATION  FROM sciencejournal.authorsByAffiliation ORDER BY id ASC";
 
 
     @Autowired

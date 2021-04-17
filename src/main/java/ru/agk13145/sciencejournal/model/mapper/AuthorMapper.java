@@ -16,7 +16,7 @@ public class AuthorMapper implements RowMapper<Author> {
         author.setFirstName(resultSet.getString("FIRST_NAME"));
         author.setLastName(resultSet.getString("LAST_NAME"));
         author.setMiddleName(resultSet.getString("MIDDLE_NAME"));
-        author.setDateOfBirth(resultSet.getObject("CREATED_AT", LocalDateTime.class));
+        author.setDateOfBirth(resultSet.getObject("DATE_OF_BIRTH", LocalDateTime.class));
         author.setOrcid(resultSet.getString("ORCID"));
         return author;
     }

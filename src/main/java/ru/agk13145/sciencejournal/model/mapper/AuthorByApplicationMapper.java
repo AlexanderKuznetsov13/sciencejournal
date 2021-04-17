@@ -12,7 +12,7 @@ public class AuthorByApplicationMapper implements RowMapper<AuthorByApplication>
         AuthorByApplication authorByApplication = new AuthorByApplication();
         authorByApplication.setId(resultSet.getInt("ID"));
         authorByApplication.setApplicationId(resultSet.getInt("APPLICATION_ID"));
-        authorByApplication.setAuthorByAffiliationId(resultSet.getInt("AUTHOR_BY_AFFILIATION_ID"));
+        authorByApplication.setAuthorByAffiliationId(resultSet.getInt("AUTHORS_BY_AFFILIATION_ID"));
         return authorByApplication;
     }
 }

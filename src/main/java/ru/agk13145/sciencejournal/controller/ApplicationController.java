@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.agk13145.sciencejournal.model.Application;
+import ru.agk13145.sciencejournal.model.ApplicationWithDetails;
 import ru.agk13145.sciencejournal.service.ApplicationService;
 
 import java.util.List;
@@ -29,6 +30,13 @@ public class ApplicationController {
     public ResponseEntity<Application> getApplication(@PathVariable Integer applicationId) {
         Application application = applicationService.getApplication(applicationId);
         return new ResponseEntity<>(application, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{applicationId}/detailed")
+    @ResponseBody
+    public ResponseEntity<ApplicationWithDetails> getApplicationWithDetails(@PathVariable Integer applicationId) {
+        ApplicationWithDetails applicationWithDetails = applicationService.getApplicationWithDetails(applicationId);
+        return new ResponseEntity<>(applicationWithDetails, HttpStatus.OK);
     }
 
     @PostMapping

@@ -18,16 +18,16 @@
         </preConditions>
         <sql>
             INSERT INTO sciencejournal.author (id, last_name, first_name, middle_name, date_of_birth, orcid)
-            VALUES (nextval('sciencejournal.author_seq'), 'Goodniff','Oleg','Ivanovich', now(), now());
+            VALUES (nextval('sciencejournal.author_seq'), 'Goodniff','Oleg','Ivanovich', now(), '222-222-333-4444');
 
             INSERT INTO sciencejournal.author (id, last_name, first_name, middle_name, date_of_birth, orcid)
-            VALUES (nextval('sciencejournal.author_seq'), 'Petrov','Ilia','Olegovich', now(), now());
+            VALUES (nextval('sciencejournal.author_seq'), 'Petrov','Ilia','Olegovich', now(), '111-222-333-4444');
 
             INSERT INTO sciencejournal.author (id, last_name, first_name, middle_name, date_of_birth, orcid)
-            VALUES (nextval('sciencejournal.author_seq'), 'Sidorov','Ivan','Lvovich', now(), now());
+            VALUES (nextval('sciencejournal.author_seq'), 'Sidorov','Ivan','Lvovich', now(), '111-222-333-2222');
 
             INSERT INTO sciencejournal.author (id, last_name, first_name, middle_name, date_of_birth, orcid)
-            VALUES (nextval('sciencejournal.author_seq'), 'Ivanov','Konstantin','Nikolaevich', now(), now());
+            VALUES (nextval('sciencejournal.author_seq'), 'Ivanov','Konstantin','Nikolaevich', now(), '111-222-443-4444');
         </sql>
     </changeSet>
 
