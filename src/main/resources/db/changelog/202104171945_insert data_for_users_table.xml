@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104171100_insert data_for_users_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="users"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.users
+                where name in ('Nikolai', 'Aleks', 'Polina', 'Roman')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.users (id, name, surname, middle_name, email, password)
+            VALUES (nextval('sciencejournal.users_seq'), 'Nikolai','Ivanov','Sergeevich', 'NIS345@mail.ru', 'qwerty1');
+
+            INSERT INTO sciencejournal.users (id, name, surname, middle_name, email, password)
+            VALUES (nextval('sciencejournal.users_seq'), 'Aleks','Smirnoff','Olegovich', 'ASO456@mail.ru', 'qwerty2');
+
+            INSERT INTO sciencejournal.users (id, name, surname, middle_name, email, password)
+            VALUES (nextval('sciencejournal.users_seq'), 'Polina','Gaft','Sergeevna', 'PGS567@mail.ru', 'qwerty3');
+
+            INSERT INTO sciencejournal.users (id, name, surname, middle_name, email, password)
+            VALUES (nextval('sciencejournal.users_seq'), 'Roman','Gosudarev','Nikolaevich', 'NIS345@mail.ru', 'qwerty4');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
