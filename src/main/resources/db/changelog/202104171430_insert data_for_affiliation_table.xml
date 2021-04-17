@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104171430_insert data_for_affiliation_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="affiliation"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.affiliation
+                where name in ('Kazan State University', 'Moscow State University', 'Bauman University')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.affiliation (id, name)
+            VALUES (nextval('sciencejournal.affiliation_seq'), 'Kazan State University');
+
+            INSERT INTO sciencejournal.affiliation (id, name)
+            VALUES (nextval('sciencejournal.affiliation_seq'), 'Moscow State University');
+
+            INSERT INTO sciencejournal.affiliation (id, name)
+            VALUES (nextval('sciencejournal.affiliation_seq'), 'Bauman University');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

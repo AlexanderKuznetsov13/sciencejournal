@@ -24,4 +24,5 @@
     <include file="changelog/202104162330_insert data_for_languages_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104162345_insert data_for_topics_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104171100_insert data_for_usertypes_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171430_insert data_for_affiliation_table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
