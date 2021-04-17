@@ -18,7 +18,8 @@ public class LoggingAspect {
 
     private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Before("@annotation(ru.agk13145.sciencejournal.config.annotation.LoggingController)")
+    //@Before("@annotation(ru.agk13145.sciencejournal.config.annotation.LoggingController)")
+    @Before("execution(public * ru.agk13145.sciencejournal.controller.*Controller.*(..))")
     public void beforeCallAtMethod(JoinPoint jp) {
         String args = Arrays.stream(jp.getArgs())
                 .map(a -> a.toString())
@@ -26,7 +27,8 @@ public class LoggingAspect {
         logger.info("before " + jp.toString() + ", args=[" + args + "]");
     }
 
-    @After("@annotation(ru.agk13145.sciencejournal.config.annotation.LoggingController)")
+    //@After("@annotation(ru.agk13145.sciencejournal.config.annotation.LoggingController)")
+    @After("execution(public * ru.agk13145.sciencejournal.controller.*Controller.*(..))")
     public void afterCallAt(JoinPoint jp) {
         logger.info("after " + jp.toString());
     }
