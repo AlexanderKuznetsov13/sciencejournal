@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104171930_insert data_for_journal_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="journals"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.journals
+                where (topic_id=7 and language_id=1) or (topic_id=1 and language_id=1)
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Journal of General Physics', 7, 1);
+
+            INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Journal of Business', 1, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

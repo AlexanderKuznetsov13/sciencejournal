@@ -26,4 +26,5 @@
     <include file="changelog/202104171100_insert data_for_usertypes_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104171430_insert data_for_affiliation_table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/202104171700_insert data_for_applicationstatustypes_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171930_insert data_for_journal_table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

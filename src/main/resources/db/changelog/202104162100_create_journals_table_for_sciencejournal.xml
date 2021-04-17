@@ -28,6 +28,7 @@
         <sql>
             CREATE TABLE sciencejournal.journals (
             id              INTEGER         NOT NULL DEFAULT nextval('sciencejournal.journals_seq'),
+            name            VARCHAR(300)    NOT NULL,
             topic_id        INTEGER         NOT NULL,
             language_id     INTEGER         NOT NULL,
 
@@ -38,6 +39,7 @@
 
             COMMENT ON TABLE sciencejournal.journals IS 'List of journals';
             COMMENT ON COLUMN sciencejournal.journals.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.journals.name IS 'name of journal';
             COMMENT ON COLUMN sciencejournal.journals.topic_id IS 'id of topics';
             COMMENT ON COLUMN sciencejournal.journals.language_id IS 'id of language';
         </sql>
