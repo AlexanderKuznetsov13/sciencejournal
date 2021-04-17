@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.agk13145.sciencejournal.model.UserType;
-import ru.agk13145.sciencejournal.service.UsertypeService;
+import ru.agk13145.sciencejournal.service.UserTypeService;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class UserTypeController {
 
     @Autowired
-    private UsertypeService usertypeService;
+    private UserTypeService usertypeService;
 
     @GetMapping
     @ResponseBody

@@ -4,7 +4,7 @@ import ru.agk13145.sciencejournal.model.UserType;
 
 import java.util.List;
 
-public interface UsertypeService {
+public interface UserTypeService {
     UserType getUserType(Integer usertypeId);
 
     Integer createUserType(UserType usertype);

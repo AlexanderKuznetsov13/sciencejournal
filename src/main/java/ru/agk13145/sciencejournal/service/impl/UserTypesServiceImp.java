@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.agk13145.sciencejournal.dao.UserTypeDao;
 import ru.agk13145.sciencejournal.model.UserType;
-import ru.agk13145.sciencejournal.service.UsertypeService;
+import ru.agk13145.sciencejournal.service.UserTypeService;
 
 import java.util.List;
 
 @Service
-public class UsertypesServiceImp implements UsertypeService {
+public class UserTypesServiceImp implements UserTypeService {
 
     @Autowired
     UserTypeDao usertypeDao;
