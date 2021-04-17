@@ -18,10 +18,10 @@
         </preConditions>
         <sql>
             INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
-            VALUES (nextval('sciencejournal.topics_seq'), 'Journal of General Physics', 7, 1);
+            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of General Physics', 7, 1);
 
             INSERT INTO sciencejournal.journals (id, name, topic_id, language_id)
-            VALUES (nextval('sciencejournal.topics_seq'), 'Journal of Business', 1, 1);
+            VALUES (nextval('sciencejournal.journals_seq'), 'Journal of Business', 1, 1);
         </sql>
     </changeSet>
 
