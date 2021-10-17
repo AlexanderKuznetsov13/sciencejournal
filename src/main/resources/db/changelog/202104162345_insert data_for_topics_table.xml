@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104162345_insert data_for_topics_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="topics"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.topics
+                where name in ('Business and Management', 'Artificial Intelligence', 'Engineering',
+                'Social Sciences', 'Medicine', 'Sociology', 'Mathematics', 'Physics')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Business and Management');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Artificial Intelligence');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Social Sciences');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Medicine');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Sociology');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Mathematics');
+
+            INSERT INTO sciencejournal.topics (id, name)
+            VALUES (nextval('sciencejournal.topics_seq'), 'Physics');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

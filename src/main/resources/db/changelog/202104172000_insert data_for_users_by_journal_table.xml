@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104172000_insert data_for_usersbyjournal_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="usersbyjournal"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.usersbyjournal
+                where (user_id=4 and user_type_id=1 and journal_id=2) or (user_id=3 and user_type_id=2 and journal_id=2)
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.usersbyjournal (id, user_id, user_type_id, journal_id)
+            VALUES (nextval('sciencejournal.usersbyjournal_seq'), 4, 1, 2);
+
+            INSERT INTO sciencejournal.usersbyjournal (id, user_id, user_type_id, journal_id)
+            VALUES (nextval('sciencejournal.usersbyjournal_seq'), 3, 2, 2);
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

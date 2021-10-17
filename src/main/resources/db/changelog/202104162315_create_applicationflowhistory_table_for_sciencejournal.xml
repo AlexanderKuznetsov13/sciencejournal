@@ -1,0 +1,55 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_applicationflowhistory_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('applicationflowhistory_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.applicationflowhistory_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_applicationflowhistory_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="applicationflowhistory" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('applicationflowhistory_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.applicationflowhistory (
+            id              INTEGER         NOT NULL DEFAULT nextval('sciencejournal.applicationflowhistory_seq'),
+            user_id         INTEGER         NOT NULL,
+            application_id         INTEGER         NOT NULL,
+            application_status_type_id      INTEGER         NOT NULL,
+            is_done      BOOLEAN         NOT NULL,
+            creation_date TIMESTAMP NOT NULL,
+            last_modification TIMESTAMP NOT NULL,
+
+            CONSTRAINT applicationflowhistory_id_pk PRIMARY KEY (id),
+            CONSTRAINT applicationflowhistory_user_id_fk FOREIGN KEY (user_id) REFERENCES sciencejournal.users (id),
+            CONSTRAINT applicationflowhistory_application_id_fk FOREIGN KEY (application_id) REFERENCES sciencejournal.application (id),
+            CONSTRAINT applicationflowhistory_application_status_type_id_fk FOREIGN KEY (application_status_type_id) REFERENCES sciencejournal.applicationstatustypes (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.applicationflowhistory IS 'List of applicationflowhistory';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.user_id IS 'id of user';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.application_id IS 'id of application';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.application_status_type_id IS 'id of status type';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.is_done IS 'boolean value';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.creation_date IS 'time when record is created';
+            COMMENT ON COLUMN sciencejournal.applicationflowhistory.last_modification IS 'time when record is modified';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

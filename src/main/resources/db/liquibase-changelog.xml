@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <include file="changelog/1_add_functions.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162000_create_sciencejournal_schema.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162005_create_users_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162010_create_topics_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162015_create_languages_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162020_create_usertypes_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162025_create_applicationstatustypes_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162030_create_affiliation_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162035_create_author_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162040_create_configs_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162100_create_journals_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162115_create_users_by_journal_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162130_create_configs_by_journal_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162145_create_authors_by_affiliation_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162200_create_application_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162300_create_authorbyapplication_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162315_create_applicationflowhistory_table_for_sciencejournal.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162330_insert data_for_languages_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104162345_insert data_for_topics_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171100_insert data_for_usertypes_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171430_insert data_for_affiliation_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171700_insert data_for_applicationstatustypes_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171930_insert data_for_journal_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104171945_insert data_for_users_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172000_insert data_for_users_by_journal_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172045_insert data_for_author_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172050_insert data_for_authors_by_affiliation_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172150_insert data_for_application_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202104172205_insert data_for_author_by_application_table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

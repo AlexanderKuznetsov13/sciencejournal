@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="create_sequence_authorsbyaffiliation_seq" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">
+                select dbu_sequence_exists('authorsbyaffiliation_seq', 'sciencejournal')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE SEQUENCE sciencejournal.authorsbyaffiliation_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_table_authorsbyaffiliation_for_sciencejournal" author="alexander.kuznetsov" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authorsbyaffiliation" schemaName="sciencejournal"/>
+            </not>
+            <sqlCheck expectedResult="t">select dbu_sequence_exists('authorsbyaffiliation_seq', 'sciencejournal')</sqlCheck>
+        </preConditions>
+        <sql>
+            CREATE TABLE sciencejournal.authorsbyaffiliation (
+            id INTEGER NOT NULL DEFAULT nextval('sciencejournal.authorsbyaffiliation_seq'),
+            author_id INTEGER NOT NULL,
+            affiliation_id INTEGER NOT NULL,
+            creation_date TIMESTAMP NOT NULL,
+            last_modification TIMESTAMP NOT NULL,
+
+            CONSTRAINT authorsbyaffiliation_id_pk PRIMARY KEY (id),
+            CONSTRAINT authorsbyaffiliation_author_id_fk FOREIGN KEY (author_id) REFERENCES sciencejournal.author (id),
+            CONSTRAINT authorsbyaffiliation_affiliation_id_fk FOREIGN KEY (affiliation_id) REFERENCES sciencejournal.affiliation (id)
+            );
+
+            COMMENT ON TABLE sciencejournal.authorsbyaffiliation IS 'List of configs for specific journal';
+            COMMENT ON COLUMN sciencejournal.authorsbyaffiliation.id IS 'ID';
+            COMMENT ON COLUMN sciencejournal.authorsbyaffiliation.author_id IS 'id of author';
+            COMMENT ON COLUMN sciencejournal.authorsbyaffiliation.affiliation_id IS 'id of affiliation';
+            COMMENT ON COLUMN sciencejournal.authorsbyaffiliation.creation_date IS 'time when record is created';
+            COMMENT ON COLUMN sciencejournal.authorsbyaffiliation.last_modification IS 'time when record is modified';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

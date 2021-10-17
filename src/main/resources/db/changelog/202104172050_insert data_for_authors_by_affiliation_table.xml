@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104172050_insert data_for_authorsbyaffiliation_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="authorsbyaffiliation"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.authorsbyaffiliation
+                where (author_id=4 and affiliation_id=3) or (author_id=3 and affiliation_id=2) or (author_id=1 and affiliation_id=1)
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.authorsbyaffiliation (id, author_id, affiliation_id, creation_date, last_modification)
+            VALUES (nextval('sciencejournal.authorsbyaffiliation_seq'), 4, 3, now(), now());
+
+            INSERT INTO sciencejournal.authorsbyaffiliation (id, author_id, affiliation_id, creation_date, last_modification)
+            VALUES (nextval('sciencejournal.authorsbyaffiliation_seq'), 3, 2, now(), now());
+
+            INSERT INTO sciencejournal.authorsbyaffiliation (id, author_id, affiliation_id, creation_date, last_modification)
+            VALUES (nextval('sciencejournal.authorsbyaffiliation_seq'), 1, 1, now(), now());
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

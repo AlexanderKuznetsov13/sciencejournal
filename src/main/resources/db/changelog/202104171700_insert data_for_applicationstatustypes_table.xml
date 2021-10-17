@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="202104171100_insert data_for_applicationstatustypes_table" author="alexander.kuznetsov"  dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <tableExists schemaName="sciencejournal" tableName="applicationstatustypes"/>
+            <sqlCheck expectedResult="0">
+                select count(1)
+                from sciencejournal.applicationstatustypes
+                where name in ('created but not verified', 'verified by manager', 'waiting of reviewing', 'review is completed but non verified by manager', 'approved', 'waiting for publication', 'published', 'denied', 'partly approved')
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'created but not verified','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'verified by manager','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'waiting of reviewing','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'review is completed but non verified by manager','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'approved','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'waiting for publication','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'published','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'denied','description');
+
+            INSERT INTO sciencejournal.applicationstatustypes (id, name, description)
+            VALUES (nextval('sciencejournal.applicationstatustypes_seq'), 'partly approved','description');
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
